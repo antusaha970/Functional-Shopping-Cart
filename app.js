@@ -15,9 +15,13 @@ addItemBtn.addEventListener('click',function(){
     document.getElementById("priceToUpdate").innerText = priceToUpdateNum;
 
     const subTotal = document.getElementById("subTotal").innerText;
-    // let subTotalNum = parseInt(subTotal);
-    // subTotalNum += originalPrice;
-    // alert(subTotalNum);
-    // document.getElementById("subTotal").innerText = subTotalNum;
+    let subTotalNum = parseFloat(subTotal.replace(/,/g, ''));
+    subTotalNum += originalPrice;
+    document.getElementById("subTotal").innerText = subTotalNum;
 
+    const total = document.getElementById("total").innerText;
+    console.log(total);
+    let totalNum = parseFloat(total.replace(/,/g, ''));
+    totalNum += originalPrice;
+    document.getElementById("total").innerText = totalNum;
 })
