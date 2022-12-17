@@ -1,3 +1,25 @@
+// Functions goes here
+function plusBtnFunc(inputId,priceId,originalPrice,priceToUpdateNum) {
+    const quantity= document.getElementById(inputId).value;
+    let quantityNum = parseInt(quantity);
+    quantityNum++;
+    document.getElementById(inputId).value = quantityNum;
+
+
+    document.getElementById(priceId).innerText = priceToUpdateNum;
+
+    const subTotal = document.getElementById("subTotal").innerText;
+    let subTotalNum = parseFloat(subTotal.replace(/,/g, ''));
+    subTotalNum += originalPrice;
+    document.getElementById("subTotal").innerText = subTotalNum;
+
+    const total = document.getElementById("total").innerText;
+    let totalNum = parseFloat(total.replace(/,/g, ''));
+    totalNum += originalPrice;
+    document.getElementById("total").innerText = totalNum;
+}
+
+
 // Add item functionality
 const addItemBtn = document.getElementById("addItemBtn");
 
@@ -6,22 +28,17 @@ const originalPrice = parseInt(priceToUpdate);
 let priceToUpdateNum = parseInt(priceToUpdate);
 
 addItemBtn.addEventListener('click',function(){
-    const quantity= document.getElementById("quantity").value;
-    let quantityNum = parseInt(quantity);
-    quantityNum++;
-
-    document.getElementById("quantity").value = quantityNum;
     priceToUpdateNum += originalPrice;
-    document.getElementById("priceToUpdate").innerText = priceToUpdateNum;
+    plusBtnFunc("quantity","priceToUpdate",originalPrice,priceToUpdateNum);
+})
 
-    const subTotal = document.getElementById("subTotal").innerText;
-    let subTotalNum = parseFloat(subTotal.replace(/,/g, ''));
-    subTotalNum += originalPrice;
-    document.getElementById("subTotal").innerText = subTotalNum;
+// Add item functionality for cover
+const addItemBtnCvr = document.getElementById("addItemBtnCvr");
+const priceToUpdateCvr = document.getElementById("priceToUpdateCvr").innerText;
+const originalPriceCvr = parseInt(priceToUpdateCvr);
+let priceToUpdateNumCvr = parseInt(originalPriceCvr);
 
-    const total = document.getElementById("total").innerText;
-    console.log(total);
-    let totalNum = parseFloat(total.replace(/,/g, ''));
-    totalNum += originalPrice;
-    document.getElementById("total").innerText = totalNum;
+addItemBtnCvr.addEventListener('click',function(){
+    priceToUpdateNumCvr += originalPriceCvr;
+    plusBtnFunc("quantityCvr","priceToUpdateCvr",originalPriceCvr,priceToUpdateNumCvr);
 })
